@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "set DEBUG=development:* && npx nodemon app.js",
+    "dev": "set DEBUG=development:* && node app.js"
   },
   "keywords": [],
   "author": "",
@@ -12,10 +14,18 @@
   "type": "module",
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "config": "^4.0.0",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.7",
+    "debug": "^4.4.1",
+    "dotenv": "^17.2.0",
+    "ejs": "^3.1.10",
     "express": "^5.1.0",
+    "express-session": "^1.18.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.16.1",
-    "multer": "^2.0.1"
+    "multer": "^2.0.1",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0"
   }
 }

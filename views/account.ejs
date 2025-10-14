@@ -1,0 +1,97 @@
+<%- include('./partials/header') %>
+
+<div class="py-12 px-6 md:px-20">
+  <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-md">
+
+    <h2 class="text-3xl font-bold mb-6 text-gray-800">My Account</h2>
+
+    <!-- Profile Section -->
+    <div class="flex items-center gap-6 mb-10">
+      <img src="data:image/jpeg;base64,<%= user.picture ? user.picture.toString('base64') : '' %>" 
+     class="w-28 h-28 rounded-full object-cover shadow-md border border-gray-300" alt="Profile Picture">
+
+           <form action="/profilePicture" method="POST" enctype="multipart/form-data" class="flex flex-col gap-2">
+           <input type="file" name="image" accept="image/*" class="py-2 px-4 rounded border" required>
+           <button type="submit" class="bg-yellow-500 text-white px-4 py-1 rounded">Upload</button>
+           </form>
+      <div>
+
+        <h3 class="text-3xl font-semibold text-gray-900"><%= user.fullname %></h3>
+        <p class="text-gray-600 text-1xl"><%= user.email %></p>
+        <p class="text-gray-600 text-1xl">Contact: <%= user.contact %></p>
+      </div>
+    </div>
+     
+    <!--Business Account-->
+    <div class="flex justify-center mb-4 ">
+      <a href="/owners/login" class="w-lg bg-blue-500 text-white px-4 py-1 rounded">Your Business Account</a>
+    </div>
+    
+    <!--Address Form -->
+    <form action="/address" method="POST"class="text-gray-800 " >
+  <label for="street">Street Address :</label>
+  <input type="text" id="street" name="street" value="<%= user.address?.street || 'street' %>" required class="w-full"><br>
+
+  <label for="city">City :</label>
+  <input type="text" id="city" name="city" value="<%= user.address?.city || 'city' %>" placeholder="city"><br>
+
+  <label for="state">State/Province :</label>
+  <input type="text" id="state" name="state" value="<%= user.address?.state || 'state' %>" placeholder="state"><br>
+
+  <label for="pinCode">ZIP/Pin Code :</label>
+  <input type="text" id="pinCode" name="pinCode" value="<%= user.address?.pinCode || 'pinCode' %>" placeholder="pinCode"><br>
+
+  <label for="country">Country :</label>
+  <input type="text" id="country" name="country" value="<%= user.address?.country || 'country' %>" placeholder="country"><br>
+
+   <button type="submit" class="bg-yellow-500 text-white px-4 py-1 rounded">Edit Address</button>
+</form>
+
+<p class="text-gray-600">
+  Address: <%= user.address?.street %>, <%= user.address?.city %>, 
+  <%= user.address?.state %> - <%= user.address?.pinCode %>, <%= user.address?.country %>
+</p>
+
+    <!-- Orders Section -->
+<div>
+  <h4 class="text-xl font-semibold text-gray-800 mb-4">Recent Orders</h4>
+
+  <% if (user.orders.length > 0) { %>
+    <div class="space-y-5">
+      <% user.orders.slice().reverse().forEach(order => { 
+           const product = order.product;
+           const quantity = order.quantity;
+           if (!product) return;
+          let dateObj = order.date ? new Date(order.date) : null;
+           let formattedDate = dateObj.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+           let formattedTime = dateObj.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+      %>
+        <div class="flex items-center bg-gray-50 px-4 py-3 rounded border">
+          <!-- Product Image -->
+          <img src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" 
+               class="w-20 h-20 object-contain rounded mr-4 border shadow-sm" alt="Product Image">
+
+          <!-- Product Info -->
+          <div class="flex-1">
+            <h5 class="font-semibold text-lg text-gray-800"><%= product.name %></h5>
+            <p class="text-gray-600">Price: ₹<%= product.price %></p>
+            <p class="text-gray-600">Qty: <%= quantity %></p>
+            <p class="text-gray-500 text-sm">
+               Purchased on: 
+                <%= dateObj ? dateObj.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Unknown' %>
+                at 
+                <%= dateObj ? dateObj.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) : '' %>
+            </p>
+            <a href="/product/<%=product._id%>" class="hover:underline">View Your Product</a>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <p class="text-gray-500">You haven’t placed any orders yet.</p>
+  <% } %>
+</div>
+</div>
+</div>
+
+<%- include('./partials/footer') %>

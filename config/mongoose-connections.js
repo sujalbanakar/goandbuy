@@ -1,12 +1,17 @@
 import mongoose from "mongoose";
+import config from 'config'
+import debug from 'debug';
+const mongooseDebug = debug('development:mongoose');  //To not show console stuff to other developer
+//we can write here whatever we want like  debug('chaha:sujal');
 
 mongoose
-.connect('mongodb://127.0.0.1:27017/scatch')
+.connect(`${config.get("MONGODB_URI")}/Go_&_Buy`)
 .then(function(){
-  console.log('connected');
+  mongooseDebug('connected');   
+  //$env:DEBUG = "development:*" (type this in terminal to run this and and then Enter and then type npx nodemon app.js)
 })
 .catch(function(err){
-    console.log(err.message);
+    mongooseDebug(err);
 })
 
 export default mongoose.connection; 

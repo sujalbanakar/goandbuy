@@ -1,0 +1,25 @@
+brown
+text #774F3D
+panel #DEBEAE
+bgcolor #F4DDD2 
+
+lightblue
+text #48606E
+panel #D3E4EE
+bgcolor #F3F8FB
+
+khaakibrown
+text #5F4A30
+panel #C5B095
+bgcolor #DED0BF
+
+ink
+text #816264
+panel #E3C4C6
+bgcolor #F4E0E1
+
+class="bg-red-500 -mt-6 hover:bg-red-600 text-white px-4 py-2 rounded-md font-semibold shadow-md transition duration-300">
+
+bg-[0px_-300px] -mt-17 
+
+font-helvetica

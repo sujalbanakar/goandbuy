@@ -1,0 +1,46 @@
+<%- include('./partials/header') %>
+
+            <div class="w-full flex px-20 mt-[-55px]">
+                <div class="w-1/2 flex items-center justify-center">
+                    <div class="w-full px-32">
+                        <h3 class="text-4xl">welcome to <span class="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent font-semibold">Go & Buy</span></h3>
+                        <h4 class="text-2xl mb-5">Create your Business account</h4>
+                        <form autocomplete="off" action="/owners/create" method="post">
+                            <input
+                                class="bg-zinc-100 block w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200 text-gray-800 "
+                                type="text" placeholder="Full Name" name="fullname">
+                            <input
+                                class="bg-zinc-100 block w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200 text-gray-800 "
+                                type="email" placeholder="Email" name="email">
+                            <input
+                                class="bg-zinc-100 block w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200 text-gray-800 "
+                                type="password" placeholder="Password" name="password">
+                            <input
+                                class="bg-zinc-100 block w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200 text-gray-800 "
+                                type="tel" placeholder="Contact" name="contact">
+                            <input
+                                class="bg-zinc-100 block w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200 text-gray-800 "
+                                type="text" placeholder="GSTIN" name="gstin">
+                            <input class="px-5 rounded-full py-3 mt-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 shadow-md font-medium text-white" type="submit"
+                                value="Create My Account">
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="w-1/2 flex items-center justify-center h-screen">
+                    <div class="w-full px-32">
+                        <h4 class="text-2xl capitalize mb-5">login your account</h4>
+                        <form autocomplete="off" action="/owners/login" method="post">
+                            <input
+                                class="block bg-zinc-100 w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200 text-gray-800 "
+                                type="email" placeholder="Email" name="email">
+                            <input
+                                class="block bg-zinc-100 w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200 text-gray-800 "
+                                type="password" placeholder="Password" name="password">
+                            <input class="px-5 block rounded-full py-3 mt-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 shadow-md font-medium text-white  " type="submit"
+                                value="Login">
+                        </form>
+                    </div>
+                </div>
+            </div>
+    <%- include('./partials/footer') %>

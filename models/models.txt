@@ -15,3 +15,23 @@ discount
 bgcolor
 panelcolor
 textcolor
+
+router.get('/cart', isLoggedin, async function (req, res) {
+  let user = await userModel
+    .findOne({ email: req.user.email })
+    .populate("cart.product");
+
+  // Compute total bill across all cart items
+  let bill = 0;
+  user.cart.forEach(item => {
+    const price = item.product?.price || 0;
+    const discount = item.product?.discount || 0;
+    const quantity = item.quantity || 1;
+    bill += (price - discount) * quantity;
+  });
+
+  // Add a flat delivery charge (optional)
+  bill += 20;
+
+  res.render('cart', { user, bill });
+});

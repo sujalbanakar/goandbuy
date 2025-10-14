@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Go & Buy</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+       background: radial-gradient(circle at top right, rgba(76, 29, 149, 0.5), transparent 40%),
+              radial-gradient(circle at bottom left, rgba(59, 7, 100, 0.5), transparent 40%),
+              linear-gradient(180deg, #0a0118 0%, #0a021f 100%);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+    }
+    .nav-link {
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(to right, #ff7b54, #ffb26b);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    #loading-overlay {
+  transition: opacity 0.5s ease;
+  }
+  </style>
+</head>
+
+<body class="min-h-screen text-white font-sans">
+  <div id="loading-overlay" class="fixed inset-0 flex items-center justify-center bg-[#0f0f0f] z-[9999]">
+  <div class="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
+</div>
+
+  <div class="min-h-screen">
+
+    <nav class="w-full flex justify-between px-6 py-4 items-center bg-black/40 backdrop-blur-lg shadow-lg border-b border-white/10">
+      <a class="text-2xl tracking-wide font-extrabold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent" href="/shop">
+        Go & Buy
+      </a>
+
+      <% var loggedin = typeof loggedin !== 'undefined' ? loggedin : true %>
+      <% if (loggedin) { %>
+        <div class="flex gap-6 items-center font-medium text-gray-300">
+          <a href="/shop" class="nav-link hover:text-white">Shop</a>
+          <a href="/cart" class="nav-link hover:text-white">Cart</a>
+          <a href="/account" class="nav-link hover:text-white">My Account</a>
+          <a href="/users/logout" class="nav-link text-red-400 hover:text-red-300">Logout</a>
+        </div>
+      <% } %>
+    </nav>  

@@ -1,0 +1,130 @@
+<%- include('./partials/header') %>
+   <% if (success && success.length > 0) { %>
+  <div id="successMessage" class="flash-message bg-green-500 text-white p-3 rounded absolute top-5 left-1/2 -translate-x-1/2 transition-opacity duration-700 ease-in-out">
+    <% success.forEach(msg => { %>
+      <p><%= msg %></p>
+    <% }) %>
+  </div>
+<% } %>
+
+<% if (error && error.length > 0) { %>
+  <div id="errorMessage" class="flash-message bg-red-500 text-white p-3 rounded absolute top-20 left-1/2 -translate-x-1/2 transition-opacity duration-700 ease-in-out">
+    <% error.forEach(msg => { %>
+      <p><%= msg %></p>
+    <% }) %>
+  </div>
+<% } %>
+
+<div class=" px-6 py-10">
+  <div class="max-w-6xl mx-auto bg-white text-gray-800 rounded-lg shadow-lg p-6 grid grid-cols-1 md:grid-cols-2 gap-10">
+
+    <!-- Product Image -->
+    <div>
+      <img src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="<%= product.name %>" class="w-full h-[400px] object-contain rounded shadow-lg transition-transform duration-200"  onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"/>
+      <div class="grid grid-cols-4 gap-4 mt-4 ">
+        <!-- Icons Section -->
+     <%- include('./partials/replacementPolicy') %>
+     
+     <%- include('./partials/freeDelivery') %>
+
+     <%- include('./partials/warranty') %>
+     
+     <%- include('./partials/payOnDelievery') %>
+      </div>
+    </div>
+
+    <!-- Product Details -->
+    <div>
+      <h1 class="text-3xl font-bold mb-2"><%= product.name %></h1>
+      <p class="text-yellow-600 text-xl font-semibold">₹<%= product.price %></p>
+      <% if(product.discount) { %>
+        <p class="text-sm text-green-600 font-medium">Extra <%= product.discount %>% off</p>
+      <% } %>
+       <% if (product.inStock > 0) { %>
+  <p class="text-green-600 font-medium text-sm mt-1">In Stock: <%= product.inStock %> item(s) available</p>
+<% } else { %>
+  <p class="text-red-600 font-medium text-sm mt-1">Product is not available</p>
+<% } %>
+
+      <!-- <p><%= typeof product.features %></p>
+<pre><%= JSON.stringify(product.features) %></pre> --> <!-- Debug-->
+   <div class="mt-6">
+     <h3 class="font-semibold text-2xl mb-2">Features</h3>
+<% if (product.features && product.features.length > 0) { %>
+  <ul class="list-disc ml-6 my-4 text-gray-600 leading-relaxed">
+    <% product.features.forEach(function(feature) { %>
+      <li><%= feature %></li>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <p class="text-gray-600 my-4">No features listed.</p>
+<% } %>
+   </div>
+  
+      <!-- <ul class="text-sm text-gray-800 list-disc ml-6 mb-4">
+        <li>Color Theme: Background - <%= product.bgcolor %>, Panel - <%= product.panelcolor %>, Text - <%= product.textcolor %></li>
+        <li>Created On: <%= product.createdAt.toDateString() %></li>
+      </ul> -->
+
+     <% if (product.inStock > 0) { %>
+  <!-- Add to Cart Button -->
+  <a href="/addtocart/<%= product._id %>">
+    <div class="w-full bg-yellow-500 hover:bg-yellow-600 text-white text-center py-2 rounded-[8px] text-lg">Add to Cart</div>
+  </a>
+  <br>
+  <!-- Buy Button -->
+  <a href="/buy/<%= product._id %>">
+    <div class="w-full bg-yellow-500 hover:bg-yellow-600 text-white text-center py-2 rounded-[8px] text-lg">Buy Now</div>
+  </a>
+<% } else { %>
+  <div class="w-full bg-gray-400 text-white text-center py-2 rounded-[8px] text-lg cursor-not-allowed opacity-70">Not Available</div>
+<% } %>
+     
+      <!-- specifications -->
+        <div class="mt-6">
+              <h3 class="font-semibold text-2xl mb-2">Specifications</h3>
+       <% if (product.specifications && product.specifications.length > 0) { %>
+  <ul class="list-disc ml-6 my-4 text-gray-600 leading-relaxed">
+    <% product.specifications.forEach(function(specification) { %>
+      <li><%= specification %></li>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <p class="text-gray-600 my-4">No specifications listed.</p>
+<% } %>
+        </div>
+      <!-- Offers -->
+      <div class="mt-6">
+        <h3 class="font-semibold text-lg mb-2">Available Offers</h3>
+        <!-- <ul class="text-sm list-disc ml-6 text-gray-700">
+          <li>No Cost EMI on major cards</li>
+          <li>Extra 10% off with Axis Bank Credit Cards</li>
+          <li>Buy 2 Get 5% Off</li>
+        </ul> -->
+         <% if (product.offers && product.offers.length > 0) { %>
+  <ul class="list-disc ml-6 my-4 text-gray-600 leading-relaxed">
+    <% product.offers.forEach(function(offer) { %>
+      <li><%= offer %></li>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <p class="text-gray-600 my-4">No offers listed.</p>
+<% } %>
+      </div>
+
+      <!-- Warranty -->
+      <div class="mt-6">
+        <h3 class="font-semibold text-lg mb-2">Warranty</h3>
+        <!-- <p class="text-sm text-gray-700">1 year manufacturer warranty for device and 6 months for accessories</p> -->
+        <p class="text-sm text-gray-700"><% if(product.warranty) { %>
+          <%= product.warranty %>
+          <% } else { %>
+          No warranty given 
+          <% } %>
+        </p>
+      </div>
+  </div>
+  </div>
+</div>
+
+<%- include('./partials/footer') %>

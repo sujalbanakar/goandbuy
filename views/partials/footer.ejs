@@ -1,0 +1,112 @@
+<script>
+   window.addEventListener("load", () => {
+    document.getElementById("loading-overlay").style.opacity = "0";
+    setTimeout(() => {
+      document.getElementById("loading-overlay").style.display = "none";
+    }, 500); // wait for fade-out
+  });
+
+
+  // Auto-dismiss flash messages after 3 seconds
+  setTimeout(() => {
+    ['successMessage', 'errorMessage'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.add('opacity-0');
+        setTimeout(() => el.remove(), 700);
+      }
+    });
+  }, 3000); 
+  
+   // Manual close handler
+  function closeFlash(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.classList.add('opacity-0');
+      setTimeout(() => el.remove(), 700);
+    }
+  }
+  
+      const toggleButtons = document.querySelectorAll(".toggle-btn");
+  const toggleBoxes = document.querySelectorAll(".toggle-box");
+
+  toggleButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation(); // prevent click from bubbling to document
+      const boxId = btn.getAttribute("data-toggle-id");
+      const box = document.getElementById(boxId);
+
+      // Close all other boxes first
+      toggleBoxes.forEach((b) => {
+        if (b.id !== boxId) b.classList.add("hidden");
+      });
+
+      // Toggle this one
+      box.classList.toggle("hidden");
+    });
+  });
+
+  // Close all toggle boxes on outside click
+  document.addEventListener("click", () => {
+    toggleBoxes.forEach((box) => box.classList.add("hidden"));
+  });
+</script>
+
+<footer class="bg-gray-800 text-white mt-20 pt-10">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10 text-sm">
+    
+    <!-- Get to Know Us -->
+    <div>
+      <h4 class="font-semibold mb-3">Get to Know Us</h4>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:underline">About Us</a></li>
+        <li><a href="#" class="hover:underline">Careers</a></li>
+        <li><a href="#" class="hover:underline">Press Releases</a></li>
+        <li><a href="#" class="hover:underline">Amazon Science</a></li>
+      </ul>
+    </div>
+
+    <!-- Connect with Us -->
+    <div>
+      <h4 class="font-semibold mb-3">Connect with Us</h4>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:underline">Facebook</a></li>
+        <li><a href="#" class="hover:underline">Twitter</a></li>
+        <li><a href="#" class="hover:underline">Instagram</a></li>
+      </ul>
+    </div>
+
+    <!-- Make Money with Us -->
+    <div>
+      <h4 class="font-semibold mb-3">Make Money with Us</h4>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:underline">Sell on Our Platform</a></li>
+        <li><a href="#" class="hover:underline">Become an Affiliate</a></li>
+        <li><a href="#" class="hover:underline">Advertise Your Products</a></li>
+        <li><a href="#" class="hover:underline">Fulfillment Services</a></li>
+      </ul>
+    </div>
+
+    <!-- Let Us Help You -->
+    <div>
+      <h4 class="font-semibold mb-3">Let Us Help You</h4>
+      <ul class="space-y-2">
+        <li><a href="/account" class="hover:underline">Your Account</a></li>
+        <li><a href="#" class="hover:underline">Returns Centre</a></li>
+        <li><a href="#" class="hover:underline">100% Purchase Protection</a></li>
+        <li><a href="#" class="hover:underline">Help</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="border-t border-gray-700 mt-10 py-4 text-center text-sm text-gray-400">
+    © <%= new Date().getFullYear() %> Go & Buy Store. All rights reserved.
+  </div>
+</footer>
+ 
+</div>
+</body>
+</html>
+

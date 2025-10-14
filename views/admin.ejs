@@ -1,0 +1,51 @@
+<%- include('./partials/header') %>
+
+<div class="w-full min-h-screen flex items-start px-20 py-20">
+  <div class="w-[25%] flex flex-col items-start">
+    <div class="flex flex-col gap-3">
+      <a class=" hover:underline" href="/owners/own">All Products</a>
+      <a class=" hover:underline" href="/owners/admin">Create New Product</a>
+    </div>
+  </div>
+
+  <div class="w-[75%] flex flex-col gap-5">
+   <a href="/owners/own/deleteall"
+   onclick="return confirm('⚠️ This will permanently delete ALL products.\nAre you sure?');"
+   class="text-red-600 hover:underline font-medium">
+   Delete All
+</a>
+
+    <div class="flex flex-wrap gap-6">
+      <% products.forEach(product => { %>
+        <div class="w-60 bg-[<%=product.bgcolor%>] shadow-md rounded overflow-hidden hover:scale-105 transition-transform duration-200">
+          <div class="w-full h-52 bg-[<%=product.panelcolor%>] flex items-center justify-center">
+            <% if (product.image && product.image.length) { %>
+               <a href="/product/<%= product._id %>">
+                 <img src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" class="w-full h-full object-contain" />
+                 <% } else { %>
+                  <span class="text-gray-400">No Image</span>
+                </a>
+                  <% } %>
+          </div>
+          <div class="flex justify-between items-center px-4 py-4">
+            <div>
+              <h3 class="font-semibold text-[<%=product.textcolor%>]"><%= product.name %></h3>
+              <h4 class="text-[<%=product.textcolor%>]">₹ <%= product.price %></h4>
+            </div>
+            <a href="/owners/own/inStock/<%= product._id %>"
+   class="w-7 h-7 flex items-center justify-center rounded-full bg-green-500 text-white hover:bg-green-600">
+   <i class="ri-add-line"></i>
+</a>     
+           <a href="/owners/own/delete/<%= product._id %>"
+   onclick="return confirm('Are you sure you want to delete <%= product.name %>?');"
+   class="w-7 h-7 flex items-center justify-center rounded-full bg-red-500 text-white hover:bg-red-600">
+   <i class="ri-delete-bin-line"></i>
+</a>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</div>
+
+<%- include('./partials/footer') %>

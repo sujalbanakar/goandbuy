@@ -1,0 +1,81 @@
+<%- include('./partials/header') %>
+
+  <% if (success && success.length> 0) { %>
+    <div id="successMessage"
+      class="flash-message w-[180px] bg-green-500 text-white p-4 rounded absolute top-5 left-1/2 -translate-x-1/2 transition-opacity duration-700 ease-in-out">
+     
+      <div class="flex justify-between items-start">
+      <div>
+      <% success.forEach(msg=> { %>
+        <p><%= msg %></p>
+        <% }) %>
+         </div>
+      <button onclick="closeFlash('successMessage')" class="absolute bottom-5 right-0 translate-x-1 text-white font-bold text-xl hover:text-red-300 ml-1 mr-3">
+        &times;
+      </button>
+    </div>
+    
+    </div>
+    <% } %>
+
+      <div class="px-6 py-10">
+        <h2 class="text-3xl font-bold mb-6">Select a delivery address</h2>
+
+        <!-- Address Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+          <div class="border p-4 bg-white text-gray-800 rounded-md shadow-sm w-[700px]">
+            <h3 class=" text-lg font-semibold">
+              <%= user.fullname %>
+            </h3>
+            <p>
+              <%= user.address.street %>, <%= user.address.city %>
+            </p>
+            <p>
+              <%= user.address.state %>, <%= user.address.country %>
+            </p>
+            <p>Pin: <%= user.address.pinCode %>
+            </p>
+            <p>Phone: +91 <%= user.contact %>
+            </p>
+            <a class="mt-3 px-4 py-1 bg-green-500 rounded-md text-white" href="/confirm">Confirm address</a>
+            <a class="mt-3 px-4 py-1 bg-yellow-500 rounded-md text-white" href="/account">Edit address</a>
+          </div>
+          <!-- Add more addresses if needed -->
+        </div>
+
+        <h2 class="text-3xl font-bold mb-6">Payment Method</h2>
+
+        <!-- Payment Options -->
+        <form action="/placeorder" method="POST">
+          <div class="space-y-4 bg-white text-gray-800 p-6 rounded-md shadow-sm">
+            <div>
+              <input type="radio" id="cod" name="payment" value="cod" class="mr-2" required>
+                <label for="cod">Cash on Delivery (COD)</label>    
+            </div>
+            <div>
+              <input type="radio" id="card" name="payment" value="card" class="mr-2">
+              <label for="card">Credit/Debit Card</label>
+            </div>
+            <div>
+              <input type="radio" id="upi" name="payment" value="upi" class="mr-2">
+              <label for="upi">UPI / Netbanking</label>
+            </div>
+          </div>
+
+          <!-- Proceed Button -->
+          <div class="mt-10 text-right">
+            <% if (addressConfirmed) { %>
+              <!-- Show form only if address is confirmed -->
+              <button type="submit" class="rounded-3xl bg-yellow-500 text-2xl px-20 py-2">
+                Place Your Order
+              </button>
+              <% } else { %>
+                <!-- Show disabled-style button but NOT inside a form -->
+                <button disabled class="rounded-3xl bg-gray-400 text-2xl px-20 py-2 text-white cursor-not-allowed opacity-70">
+                  Confirm Address First
+                </button>
+                <% } %>
+              </div>
+            </form>
+            </div>
+    <%- include('./partials/footer') %>

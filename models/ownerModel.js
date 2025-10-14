@@ -4,6 +4,7 @@ const ownerSchema=mongoose.Schema({
 fullname:String,
 email:String,
 password:String,
+contact: String,
 products:{
     type:Array,
     default:[]

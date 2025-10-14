@@ -1,0 +1,53 @@
+<!-- replacementPolicy.ejs -->
+ <div class="relative w-[650px]">
+<button class="toggle-btn flex items-center gap-2" data-toggle-id="replacementInfo">
+  <div class="flex flex-col items-center text-center">
+    <img src="https://m.media-amazon.com/images/G/31/A2I-Convert/mobile/IconFarm/icon-returns._CB562506492_.png"
+      class="w-10 h-10" />
+   <span>10 days<br>Service Centre<br>Replacement</span>
+  </div>
+  <svg class="w-4 h-4 transform transition-transform" id="arrowIcon" fill="none" stroke="currentColor"
+    viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+  </svg>
+</button>
+
+<div id="replacementInfo" class="toggle-box absolute mt-4 bg-gray-100 p-4 rounded-md shadow-md text-sm hidden transition-all duration-300 w-[600px] ">
+  <table class="w-full mb-4 border text-left text-sm">
+    <thead class="bg-gray-200">
+      <tr>
+        <th class="p-2">Replacement Reason</th>
+        <th class="p-2">Replacement Period</th>
+        <th class="p-2">Replacement Policy</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-t">
+        <td class="p-2">Defective Item</td>
+        <td class="p-2">10 days from delivery</td>
+        <td class="p-2">ZEBRONICS warranty policy (at Service Centre)</td>
+      </tr>
+      <tr class="border-t">
+        <td class="p-2">Physical Damage, Wrong, Missing Item</td>
+        <td class="p-2">10 days from delivery</td>
+        <td class="p-2">Replacement</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="mb-2 font-semibold">Defective item:</p>
+  <ul class="list-disc ml-6 mb-4 text-gray-700">
+    <li>Amazon may provide support via guides or call.</li>
+    <li>Visit ZEBRONICS Service Centre if needed.</li>
+    <li>Resolution as per warranty policy.</li>
+  </ul>
+
+  <p class="mb-2 font-semibold">Replacement Instructions:</p>
+  <p class="mb-4">Keep original packaging, MRP tag, and accessories.</p>
+
+  <p class="mb-2 font-semibold">Replacement Verification:</p>
+  <p class="mb-4">On-call image upload or service centre visit may be needed.</p>
+
+  <a href="#" class="flex items-center gap-2 text-blue-700 font-semibold hover:underline focus:outline-none">Read full returns policy</a>
+</div>
+</div>
