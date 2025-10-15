@@ -54,5 +54,5 @@ A feature-rich **E-Commerce backend** built using **Node.js, Express, and MongoD
 
 👤 **Sujal Banakar**  
 📍 IIT (BHU), Varanasi  
-🔗 [LinkedIn](https://linkedin.com/in/sujal-banakar-669b78281)  
+🔗 [LinkedIn](https://www.linkedin.com/in/sujal-banakar-669878291/)  
 💻 [GitHub](https://github.com/sujalbanakar)
