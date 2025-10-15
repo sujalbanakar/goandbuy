@@ -47,3 +47,12 @@ A feature-rich **E-Commerce backend** built using **Node.js, Express, and MongoD
 1. **Clone this repository**
    ```bash
    git clone https://github.com/sujalbanakar/goandbuy.git
+
+---
+
+## 📧 Contact
+
+👤 **Sujal Banakar**  
+📍 IIT (BHU), Varanasi  
+🔗 [LinkedIn](https://linkedin.com/in/sujal-banakar-669b78281)  
+💻 [GitHub](https://github.com/sujalbanakar)
